@@ -1,0 +1,14 @@
+EDA Finding,Observed Evidence,Interpretation,Suggested Modelling Action,Figure / Evidence
+Dataset structure,1460 rows; 81 columns; 0 exact duplicate rows.,Each row represents a labelled housing transaction.,Exclude Id and use SalePrice as the target.,4.1: dataset inspection output
+Missing data,"19 features have missing values; most missing: PoolQC=1453, MiscFeature=1406, Alley=1369, Fence=1179.",Different fields may represent absent facilities or unknown entries.,Interpret structural missingness separately from unknown values; fit imputers inside training folds.,Figure 4.2
+SalePrice distribution,Skewness = 1.883.,Positive skew indicates a longer right tail.,Consider log1p(SalePrice); your model workflow used the log target.,Figure 4.3
+Numerical relationship: OverallQual,Pearson r = 0.791.,Linear association with SalePrice; not evidence of causation.,Evaluate as a candidate predictor within cross-validation.,Figure 4.4
+Numerical relationship: GrLivArea,Pearson r = 0.709.,Linear association with SalePrice; not evidence of causation.,Evaluate as a candidate predictor within cross-validation.,Figure 4.4
+Numerical relationship: GarageCars,Pearson r = 0.640.,Linear association with SalePrice; not evidence of causation.,Evaluate as a candidate predictor within cross-validation.,Figure 4.4
+Living area,Pearson r for GrLivArea = 0.709.,Larger above-ground living areas tend to correspond to higher prices.,Keep as candidate predictor and inspect unusual points.,Figure 4.5
+Neighborhood price differences,"Lowest median: MeadowV ($88,000); highest median: NridgHt ($315,000).",House-price distributions vary by neighborhood.,One-hot encode Neighborhood within the pipeline.,Figure 4.6
+Potential outliers: GrLivArea,31 observations flagged by 1.5 × IQR.,Extreme measured values may describe genuine houses.,Investigate rather than automatically delete.,Figure 4.7
+Potential outliers: LotArea,69 observations flagged by 1.5 × IQR.,Extreme measured values may describe genuine houses.,Investigate rather than automatically delete.,Figure 4.7
+Potential outliers: TotalBsmtSF,61 observations flagged by 1.5 × IQR.,Extreme measured values may describe genuine houses.,Investigate rather than automatically delete.,Figure 4.7
+Potential outliers: GarageArea,21 observations flagged by 1.5 × IQR.,Extreme measured values may describe genuine houses.,Investigate rather than automatically delete.,Figure 4.7
+Engineered floor area,TotalSF vs SalePrice Pearson r = 0.782.,Combined floor area is associated with sale price.,Include engineered TotalSF as a candidate feature; evaluate without leakage.,Figure 4.8

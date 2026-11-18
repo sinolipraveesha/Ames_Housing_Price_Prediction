@@ -1,0 +1,22 @@
+# Raw dataset files
+Dataset/train.csv
+Dataset/test.csv
+
+# Python temporary files
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+
+# Model files
+*.joblib
+*.pkl
+
+# Private credentials
+.env
+.env.*
+kaggle.json
+.streamlit/secrets.toml
+
+# Operating system files
+Thumbs.db
+.DS_Store
